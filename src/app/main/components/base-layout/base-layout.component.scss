@@ -1,0 +1,46 @@
+@import 'src/styles/vars';
+
+:host {
+  width: 100%;
+}
+
+.container {
+  @include container;
+  max-width: 100%;
+}
+
+.base-layout {
+
+  &__inner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    margin: 50px 0;
+  }
+
+  &__header {
+    font-size: 30px;
+    margin-bottom: 70px;
+  }
+
+  &__workplace {
+    display: flex;
+
+
+    height: 900px;
+    width: 100%;
+    border: 1px solid $orange;
+    border-radius: 12px;
+  }
+
+  &__form-wrapper {
+    width: 50%;
+    border-right: 1px solid $orange;
+  }
+
+  &__list-wrapper {
+    width: 50%;
+  }
+}

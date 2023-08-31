@@ -3,7 +3,12 @@ $orange: #EA9769;
 $dark-grey: #393C49;
 
 
-
+@mixin container {
+  width: 100%;
+  max-width: 1080px;
+  padding: 0 20px;
+  margin: 0 auto;
+}
 
 @mixin MonNorm {
   font-family: 'Montserrat', sans-serif;

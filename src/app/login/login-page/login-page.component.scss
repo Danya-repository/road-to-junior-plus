@@ -1,0 +1,33 @@
+@import 'src/styles/vars';
+
+:host {
+  width: 100%;
+}
+
+.container {
+  @include container;
+}
+
+.login {
+
+  &__inner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    margin: 50px 0;
+  }
+
+  &__header {
+    font-size: 30px;
+    margin-bottom: 140px;
+  }
+
+  &__body {
+    height: 500px;
+    width: 100%;
+    border: 1px solid $orange;
+    border-radius: 12px;
+  }
+}
