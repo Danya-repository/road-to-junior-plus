@@ -2,19 +2,20 @@
   <div class="user__info">
     <div class="user__info-row">
       <span class="user__info-field">Имя:</span>
-      <span class="user__name">Виталик</span>
+      <input type="text" class="user__name" [disabled]="canEdit" [value]="user.name">
     </div>
     <div class="user__info-row">
       <span class="user__info-field">Электронная почта:</span>
-      <span class="user__email">Виталик собака майл</span>
+      <input type="text" class="user__email" [disabled]="canEdit" [value]="user.email">
     </div>
     <div class="user__info-row">
       <span class="user__info-field">Пароль</span>
-      <span class="user__password">Виталиксекретныйкод</span>
+      <input type="text" class="user__password" [disabled]="canEdit" [value]="user.password">
     </div>
   </div>
   <div class="user__button-wrapper">
-    <button class="user__button user__button-edit">Редактировать</button>
-    <button class="user__button user__button-delete">Удалить</button>
+    <button class="user__button user__button-edit" (click)="onEdit()">Редактировать</button>
+    <button class="user__button user__button-delete" (click)="onDelete()" >Удалить</button>
+    <button class="user__button user__button-show">Показать</button>
   </div>
 </li>

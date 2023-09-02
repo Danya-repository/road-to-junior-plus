@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
+import {UserInterface} from "../../../services/user/user.interface";
 
 @Component({
   selector: 'app-user-list',
@@ -6,5 +7,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./user-list.component.scss']
 })
 export class UserListComponent {
+
+  @Input()
+  public userList: UserInterface[] | null = [];
 
 }
