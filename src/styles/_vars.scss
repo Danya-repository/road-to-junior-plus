@@ -10,6 +10,14 @@ $dark-grey: #393C49;
   margin: 0 auto;
 }
 
+@mixin border-radius {
+  border-radius: 12px;
+}
+
+@mixin input-font-size {
+  font-size: 25px;
+}
+
 @mixin MonNorm {
   font-family: 'Montserrat', sans-serif;
   font-weight: 400;

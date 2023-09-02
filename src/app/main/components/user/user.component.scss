@@ -1,0 +1,49 @@
+@import 'src/styles/vars';
+
+.user {
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+
+  width: 100%;
+  border: 1px solid $orange;
+  @include border-radius;
+
+  &__info-row {
+    padding: 10px;
+    font-size: 20px;
+
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__info {
+    margin-bottom: 20px
+  }
+
+  &__button {
+    width: 49%;
+    height: 55px;
+    @include border-radius;
+    @include input-font-size;
+    outline: none;
+    transition: .5s;
+    color: $orange;
+    background-color: $dark-main;
+    border: 1px solid $orange;
+
+    &:hover {
+      background-color: $orange;
+      color: $dark-main;
+      border: 1px solid transparent;
+    }
+  }
+
+  &__button-wrapper {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__delete-button {
+  }
+}

@@ -1,0 +1,18 @@
+@import 'src/styles/vars';
+
+.not-found {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: $orange;
+  width: 100%;
+  text-align: center;
+
+  &__title {
+    font-size: 70px;
+  }
+
+  &__error-code {
+    font-size: 120px;
+  }
+}
