@@ -1,0 +1,11 @@
+@import 'src/styles/vars';
+
+.user-list {
+  list-style: none;
+
+  &__title {
+    @include input-font-size;
+    margin-bottom: 30px;
+    font-style: normal;
+  }
+}

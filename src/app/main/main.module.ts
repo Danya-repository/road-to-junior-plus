@@ -4,12 +4,14 @@ import {BaseLayoutComponent} from './components/base-layout/base-layout.componen
 import {UserListComponent} from './components/user-list/user-list.component';
 import {UserComponent} from './components/user/user.component';
 import {MainRoutingModule} from "./main-routing.module";
+import { UserCreateFormComponent } from './components/user-create-form/user-create-form.component';
 
 @NgModule({
   declarations: [
     BaseLayoutComponent,
     UserListComponent,
-    UserComponent
+    UserComponent,
+    UserCreateFormComponent
   ],
   imports: [
     CommonModule,

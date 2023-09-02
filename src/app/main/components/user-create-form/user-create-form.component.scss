@@ -1,0 +1,48 @@
+@import 'src/styles/vars';
+
+
+.user-form {
+  display: flex;
+  flex-direction: column;
+
+  &__title {
+    @include input-font-size;
+    margin-bottom: 30px;
+    font-style: normal;
+  }
+
+  &__input {
+    background-color: $dark-main;
+    padding: 15px 20px;
+    margin-bottom: 20px;
+    color: $orange;
+    outline: none;
+    border: 1px solid $orange;
+    @include border-radius;
+    @include input-font-size;
+
+    &::placeholder {
+      @include border-radius;
+      @include input-font-size;
+      color: $orange;
+    }
+  }
+
+  &__submit-button {
+    margin: 50px auto;
+    width: 100%;
+    height: 70px;
+    @include border-radius;
+    @include input-font-size;
+    background-color: $orange;
+    color: $dark-main;
+    border: 1px solid transparent;
+    transition: .5s;
+
+    &:hover {
+      color: $orange;
+      background-color: $dark-main;
+      border-color: $orange;
+    }
+  }
+}
