@@ -1,4 +1,4 @@
-import {Component, Inject, ViewChild} from '@angular/core';
+import {Component, Inject, OnInit, ViewChild} from '@angular/core';
 import {NgForm} from "@angular/forms";
 import {USER_TOKEN, UserService} from "../../../services/user/user.service";
 
@@ -19,5 +19,7 @@ export class UserCreateFormComponent {
       email: this.form.controls['email'].value,
       password: this.form.controls['password'].value,
     });
+
+    this.form.reset();
   }
 }

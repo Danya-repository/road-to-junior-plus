@@ -9,7 +9,7 @@ import {API_TOKEN, ApiService} from "../services/api/api.service";
 import {BackendService} from "../services/backend/backend.service";
 import {HttpClientModule} from "@angular/common/http";
 import {USER_TOKEN, UserService} from "../services/user/user.service";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -18,12 +18,13 @@ import {FormsModule} from "@angular/forms";
     UserComponent,
     UserCreateFormComponent
   ],
-  imports: [
-    CommonModule,
-    MainRoutingModule,
-    HttpClientModule,
-    FormsModule,
-  ],
+    imports: [
+        CommonModule,
+        MainRoutingModule,
+        HttpClientModule,
+        FormsModule,
+        ReactiveFormsModule,
+    ],
   providers: [
     { provide: API_TOKEN, useClass: ApiService },
     { provide: USER_TOKEN, useClass: UserService },

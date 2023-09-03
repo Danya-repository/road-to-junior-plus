@@ -54,12 +54,22 @@
     width: 100%;
   }
 
+  &__info-field {
+    width: 250px;
+  }
+
   &__password, &__email, &__name {
     outline: none;
     background-color: $dark-main;
     color: $orange;
-    border: none;
+    border: 1px solid transparent;
+    @include border-radius;
+    padding: 5px 10px;
     text-align: right;
     width: 80%;
+  }
+
+  &__can-edit-mode {
+    border-color: $orange;
   }
 }
