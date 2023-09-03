@@ -1,10 +1,9 @@
 <div class="user-form__wrapper">
   <h3 class="user-form__title">Создание:</h3>
-  <form class="user-form">
-    <input type="text" class="user-form__input user-form__input-name" placeholder="Имя пользователя">
-    <input type="email" class="user-form__input  user-form__input-email" placeholder="Электронная почта">
-    <input type="password" class="user-form__input user-form__input-password" placeholder="Пароль">
-
+  <form class="user-form" #userForm="ngForm" (ngSubmit)="onSubmit()">
+    <input type="text" ngModel name="username" class="user-form__input user-form__input-name" placeholder="Имя пользователя">
+    <input type="email" ngModel name="email" class="user-form__input  user-form__input-email" placeholder="Электронная почта">
+    <input type="password" ngModel name="password" class="user-form__input user-form__input-password" placeholder="Пароль">
     <button type="submit" class="user-form__submit-button">Создать</button>
   </form>
 </div>

@@ -1,20 +1,41 @@
 <li class="user">
-  <div class="user__info">
+  <form class="user__info" [formGroup]="form">
     <div class="user__info-row">
       <span class="user__info-field">Имя:</span>
-      <span class="user__name">Виталик</span>
+      <input type="text"
+             formControlName="username"
+             [ngClass]="{'user__can-edit-mode' : form.enabled}"
+             class="user__input user__name"
+      >
     </div>
     <div class="user__info-row">
       <span class="user__info-field">Электронная почта:</span>
-      <span class="user__email">Виталик собака майл</span>
+      <input type="text"
+             formControlName="email"
+             [ngClass]="{'user__can-edit-mode' : form.enabled}"
+             class="user__input
+             user__email"
+      >
     </div>
     <div class="user__info-row">
-      <span class="user__info-field">Пароль</span>
-      <span class="user__password">Виталиксекретныйкод</span>
+      <span class="user__info-field">Пароль:</span>
+      <input type="text"
+             formControlName="password"
+             [ngClass]="{'user__can-edit-mode' : form.enabled}"
+             class="user__input user__password"
+      >
     </div>
-  </div>
+  </form>
   <div class="user__button-wrapper">
-    <button class="user__button user__button-edit">Редактировать</button>
-    <button class="user__button user__button-delete">Удалить</button>
+    <ng-container *ngIf="form.disabled; else editButton">
+      <button class="user__button user__button-edit" (click)="onEdit()">Редактировать</button>
+      <button class="user__button user__button-delete" (click)="onDelete()">Удалить</button>
+    </ng-container>
+    <button class="user__button user__button-show">Показать</button>
   </div>
 </li>
+
+<ng-template #editButton>
+  <button class="user__button user__button-edit" (click)="onSave()">Сохранить</button>
+  <button class="user__button user__button-delete" (click)="onReset()">Сбросить</button>
+</ng-template>

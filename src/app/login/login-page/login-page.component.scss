@@ -23,9 +23,49 @@
   }
 
   &__body {
-    height: 500px;
     width: 100%;
     border: 1px solid $orange;
     border-radius: 12px;
+    padding: 20px;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__form-input {
+    background-color: $dark-main;
+    padding: 15px 20px;
+    margin-bottom: 20px;
+    color: $orange;
+    outline: none;
+    border: 1px solid $orange;
+    @include border-radius;
+    @include input-font-size;
+
+    &::placeholder {
+      @include border-radius;
+      @include input-font-size;
+      color: $orange;
+    }
+  }
+
+  &__form-submit-button {
+    margin: 50px auto 0;
+    width: 100%;
+    height: 70px;
+    @include border-radius;
+    @include input-font-size;
+    background-color: $orange;
+    color: $dark-main;
+    border: 1px solid transparent;
+    transition: .5s;
+
+    &:hover {
+      color: $orange;
+      background-color: $dark-main;
+      border-color: $orange;
+    }
   }
 }

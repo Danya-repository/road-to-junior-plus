@@ -1,4 +1,4 @@
 <ul class="user-list">
-  <h3 class="user-list__title">Список пользователей</h3>
-  <app-user></app-user>
+  <h3 class="user-list__title">Список пользователей:</h3>
+  <app-user *ngFor="let user of users$ | async" [user]="user"></app-user>
 </ul>
