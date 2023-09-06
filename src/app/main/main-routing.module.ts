@@ -1,19 +1,18 @@
 import { NgModule } from '@angular/core';
-import {RouterModule, Routes} from "@angular/router";
+import { CommonModule } from '@angular/common';
+import { RouterModule, Routes} from "@angular/router";
 import {BaseLayoutComponent} from "./components/base-layout/base-layout.component";
-
+import {AuthGuard} from "../authorize/services/auth.guard";
 
 const routes: Routes = [
-  {
-    path: '',
-    component: BaseLayoutComponent,
-  },
-];
+  { path: '', component: BaseLayoutComponent, canActivate: [AuthGuard] }
+]
 
 @NgModule({
   declarations: [],
   imports: [
-    RouterModule.forChild(routes),
+    CommonModule,
+    RouterModule.forChild(routes)
   ],
   exports: [
     RouterModule,

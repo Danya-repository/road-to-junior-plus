@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {LoginPageComponent} from "./login/login-page/login-page.component";
 import {NotFoundPageComponent} from "./shared/components/not-found-page/not-found-page.component";
+import {LoginGuard} from "./login/login.guard";
 
 const routes: Routes = [
   {
@@ -11,6 +12,7 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginPageComponent,
+    canActivate: [LoginGuard],
   },
   {
     path: '**',
