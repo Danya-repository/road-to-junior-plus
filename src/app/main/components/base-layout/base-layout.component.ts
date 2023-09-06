@@ -1,7 +1,4 @@
-import {ChangeDetectionStrategy, Component, Inject, OnInit} from '@angular/core';
-import {Observable} from "rxjs";
-import {UserInterface} from "../../../services/user/user.interface";
-import {USER_TOKEN, UserService} from "../../../services/user/user.service";
+import {ChangeDetectionStrategy, Component} from '@angular/core';
 
 @Component({
   selector: 'app-base-layout',
@@ -10,5 +7,7 @@ import {USER_TOKEN, UserService} from "../../../services/user/user.service";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BaseLayoutComponent {
-    public title: string = 'Регистрация пользователей';
+  public title: string = 'Регистрация пользователей';
+
+  constructor() {}
 }
