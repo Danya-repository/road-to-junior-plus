@@ -1,4 +1,4 @@
-import {Component, Inject, OnInit, ViewChild} from '@angular/core';
+import {Component, Inject, ViewChild} from '@angular/core';
 import {NgForm} from "@angular/forms";
 import {USER_TOKEN, UserService} from "../../../services/user/user.service";
 
@@ -9,9 +9,10 @@ import {USER_TOKEN, UserService} from "../../../services/user/user.service";
 })
 export class UserCreateFormComponent {
 
-  @ViewChild('userForm', { static: false }) form!: NgForm;
+  @ViewChild('userForm', {static: false}) form!: NgForm;
 
-  constructor(@Inject(USER_TOKEN) private userService: UserService) {}
+  constructor(@Inject(USER_TOKEN) private userService: UserService) {
+  }
 
   public onSubmit(): void {
     this.userService.createUser$({
