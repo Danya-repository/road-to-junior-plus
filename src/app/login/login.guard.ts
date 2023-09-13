@@ -1,5 +1,5 @@
 import {Inject, Injectable} from "@angular/core";
-import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from "@angular/router";
+import {CanActivate, Router} from "@angular/router";
 import {map, Observable, tap} from "rxjs";
 import {AUTH_SERVICE_TOKEN, AuthService} from "../authorize/services/auth.service";
 
@@ -12,7 +12,7 @@ export class LoginGuard implements CanActivate {
     private readonly router: Router,
     ) {}
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
+  canActivate(): Observable<boolean> {
 
     return this.authService.isAuth$().pipe(
       map((isAuth: boolean) => !isAuth),

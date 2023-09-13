@@ -3,10 +3,7 @@ import {Observable, of} from "rxjs";
 
 @Injectable()
 export class LocalStorageService {
-
   private readonly token = 'AUTH_JWT_TOKEN';
-
-  constructor() {}
 
   public getToken$(): Observable< string | null> {
     const token = localStorage.getItem(this.token) ?? null;

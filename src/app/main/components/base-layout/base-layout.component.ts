@@ -7,7 +7,5 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BaseLayoutComponent {
-  public title: string = 'Регистрация пользователей';
-
-  constructor() {}
+  public title = 'Регистрация пользователей';
 }
