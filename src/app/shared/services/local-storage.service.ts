@@ -5,8 +5,8 @@ import {Observable, of} from "rxjs";
 export class LocalStorageService {
   private readonly token = 'AUTH_JWT_TOKEN';
 
-  public getToken$(): Observable< string | null> {
-    const token = localStorage.getItem(this.token) ?? null;
+  public getToken$(): Observable<string> {
+    const token = localStorage.getItem(this.token) ?? '';
 
     return of(token);
   }
