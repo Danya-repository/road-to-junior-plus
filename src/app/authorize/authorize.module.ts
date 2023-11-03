@@ -16,8 +16,8 @@ import {AuthGuard} from "./services/auth.guard";
   providers: [
     AuthGuard,
     LocalStorageService,
+    { provide: Storage, useFactory: () => localStorage },
     { provide: AUTH_SERVICE_TOKEN, useClass: AuthService },
   ],
 })
-export class AuthorizeModule {
-}
+export class AuthorizeModule {}

@@ -1,4 +1,4 @@
-import {Injectable, InjectionToken} from '@angular/core';
+import { Injectable, InjectionToken } from '@angular/core';
 import { ApiInterface } from "./api.interface";
 
 export const API_TOKEN = new InjectionToken<ApiInterface>('API_SERVICE')

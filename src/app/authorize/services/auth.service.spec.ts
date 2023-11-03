@@ -3,7 +3,6 @@ import { LocalStorageService } from "../../shared/services/local-storage.service
 import { AuthService } from "./auth.service";
 import { instance, mock, when } from "ts-mockito"
 import { TestScheduler } from 'rxjs/testing';
-import { of } from 'rxjs';
 
 describe('Authentificate service test', () => {
     const localStorageServiceMock = mock(LocalStorageService);
@@ -32,10 +31,8 @@ describe('Authentificate service test', () => {
         testScheduler.run(({ cold, expectObservable }) => {
             when(localStorageServiceMock.getToken$).thenReturn(() => cold('a', { a: 'admin-password' }));
 
-            // authService.login('admin', 'password')
-
             const expected = 'z'
-            const unsubscribe = '3s !'
+            const unsubscribe = '2s !'
 
             expectObservable(authService.isAuth$(), unsubscribe).toBe(expected, { z: true })
         });
@@ -45,10 +42,8 @@ describe('Authentificate service test', () => {
         testScheduler.run(({ cold, expectObservable }) => {
             when(localStorageServiceMock.getToken$).thenReturn(() => cold('a', { a: 'abra-password' }));
 
-            // authService.login('admin', 'password')
-
             const expected = 'z'
-            const unsubscribe = '3s !'
+            const unsubscribe = '2s !'
 
             expectObservable(authService.isAuth$(), unsubscribe).toBe(expected, { z: false })
         });

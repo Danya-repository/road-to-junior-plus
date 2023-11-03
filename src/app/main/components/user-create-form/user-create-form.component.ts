@@ -19,7 +19,7 @@ export class UserCreateFormComponent {
       name: this.form.controls['username'].value,
       email: this.form.controls['email'].value,
       password: this.form.controls['password'].value,
-    });
+    }).subscribe();
 
     this.form.reset();
   }
