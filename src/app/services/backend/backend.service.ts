@@ -16,8 +16,7 @@ export class BackendService {
   constructor(
     private http: HttpClient,
     @Inject(API_TOKEN) private apiService: ApiInterface,
-  ) {
-  }
+  ) {}
 
   public getUser$(userId: string): Observable<UserInterface> {
     return this.http.get<UserInterface>(this.apiService.USER(userId));
@@ -35,7 +34,7 @@ export class BackendService {
     return this.http.delete<void>(this.apiService.DELETE_USER(userId));
   }
 
-  public editUser$(user: Required<UserInterface>): Observable<UserInterface> {
+  public editUser$(user: UserInterface): Observable<UserInterface> {
     return this.http.patch<UserInterface>(this.apiService.UPDATE_USER(user.id), user)
   }
 }

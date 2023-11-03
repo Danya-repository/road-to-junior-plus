@@ -52,7 +52,7 @@ export class UserComponent implements OnInit, OnDestroy {
 
 
   public onDelete(): void {
-    this.userService.deleteUser$(this.user.id);
+    this.userService.deleteUser$(this.user.id).subscribe();
     this.updateList.next();
   }
 
@@ -61,7 +61,7 @@ export class UserComponent implements OnInit, OnDestroy {
   }
 
   public onSave(): void {
-    this.userService.editUser$(this.user);
+    this.userService.editUser$(this.user).subscribe();
     this.form.disable();
   }
 
