@@ -3,6 +3,7 @@ import { Authentification } from "./auth.interface";
 import {BehaviorSubject, map, Observable, switchMap } from "rxjs";
 import {LocalStorageService} from "../../shared/services/local-storage.service";
 import {Router} from "@angular/router";
+import { pageRoutes } from 'src/app/app-routing.module';
 
 export const AUTH_SERVICE_TOKEN = new InjectionToken<Authentification>('AUTH_SERVICE_TOKEN')
 
@@ -23,12 +24,12 @@ export class AuthService implements Authentification {
   public login(login: string, password: string): void {
     this.localStorageService.setToken(`${login}-${password}`);
     this.refresh$.next(null);
-    this.router.navigate(['']);
+    this.router.navigate([pageRoutes.MAIN]);
   }
 
   public logout(): void {
     this.localStorageService.removeToken();
     this.refresh$.next(null);
-    this.router.navigate(['login']);
+    this.router.navigate([pageRoutes.LOGIN]);
   }
 }
