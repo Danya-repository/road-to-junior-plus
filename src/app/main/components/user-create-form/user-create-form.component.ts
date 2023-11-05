@@ -1,6 +1,7 @@
-import {Component, Inject, ViewChild} from '@angular/core';
+import {Component, EventEmitter, Inject, Output, ViewChild} from '@angular/core';
 import {NgForm} from "@angular/forms";
 import {USER_TOKEN, UserService} from "../../../services/user/user.service";
+import { RouterEvent } from '@angular/router';
 
 @Component({
   selector: 'app-user-create-form',
@@ -9,10 +10,12 @@ import {USER_TOKEN, UserService} from "../../../services/user/user.service";
 })
 export class UserCreateFormComponent {
 
+  @Output()
+  public updateList: EventEmitter<void> = new EventEmitter<void>();
+
   @ViewChild('userForm', {static: false}) form!: NgForm;
 
-  constructor(@Inject(USER_TOKEN) private userService: UserService) {
-  }
+  constructor(@Inject(USER_TOKEN) private userService: UserService) {}
 
   public onSubmit(): void {
     this.userService.createUser$({
@@ -22,5 +25,7 @@ export class UserCreateFormComponent {
     }).subscribe();
 
     this.form.reset();
+
+    this.updateList.emit();
   }
 }

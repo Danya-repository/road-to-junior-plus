@@ -30,5 +30,4 @@ import {MainRoutingModule} from "./main-routing.module";
     BackendService,
   ],
 })
-export class MainModule {
-}
+export class MainModule {}
