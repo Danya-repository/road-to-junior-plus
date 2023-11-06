@@ -1,5 +1,5 @@
 import { TestBed } from "@angular/core/testing";
-import { NavigationCancel, NavigationCancellationCode, NavigationError, NavigationStart, Router } from "@angular/router";
+import { NavigationCancel, NavigationCancellationCode, NavigationStart, Router } from "@angular/router";
 import { TestScheduler } from "rxjs/testing";
 import { AUTH_SERVICE_TOKEN, AuthService } from "src/app/authorize/services/auth.service";
 import { instance, mock, when } from "ts-mockito";
