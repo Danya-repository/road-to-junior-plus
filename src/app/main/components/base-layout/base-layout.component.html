@@ -7,8 +7,12 @@
           <app-user-create-form (updateList)="onUpdateList()" ></app-user-create-form>
         </div>
         <div class="base-layout__list-wrapper">
-          <ng-container *ngIf="users$ | async as users; else emptyList">
-            <app-user-list [users]="users"></app-user-list>
+          <ng-container *ngIf="users$ | async as users; else errorDownload">
+            <ng-container *ngIf="users.length > 0; else emptyList">
+              <div class="base-layout__list">
+                <app-user-list [users]="users"></app-user-list>
+              </div>
+            </ng-container>
           </ng-container>
         </div>
       </div>
@@ -16,4 +20,14 @@
   </div>
 </div>
 
-<ng-template #emptyList>Список пуст</ng-template>
+<ng-template #emptyList>
+  <div class="base-layout__empty-list">
+    Список пуст
+  </div>
+</ng-template>
+
+<ng-template #errorDownload>
+  <div class="base-layout__error-download">
+    Ошибка загрузки
+  </div>
+</ng-template>
