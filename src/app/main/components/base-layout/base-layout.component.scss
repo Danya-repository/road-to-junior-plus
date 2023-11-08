@@ -41,4 +41,12 @@
     width: 50%;
     padding: 20px;
   }
+
+  &__empty-list, &__error-download {
+    font-size: 30px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
