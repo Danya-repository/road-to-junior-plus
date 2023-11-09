@@ -6,6 +6,7 @@ import { By } from "@angular/platform-browser";
 import { DebugElement } from "@angular/core";
 import { ReactiveFormsModule } from "@angular/forms";
 import { EMPTY, of } from "rxjs";
+import { anyString } from "ts-mockito";
 
 const mockUser: UserInterface = {
     id: "1",
@@ -23,7 +24,7 @@ describe('User component', () => {
         'deleteUser$': of(EMPTY),
     });
 
-    const getElementByCss = function (selector: string): DebugElement | null {
+    const getElementByCss = function (selector: string): DebugElement {
         return fixture.debugElement.query(By.css(selector));
     }
 
@@ -52,11 +53,12 @@ describe('User component', () => {
 
         component.user = mockUser;
         component.ngOnInit();
+
+        fixture.detectChanges();
     })
 
     it('Should render is correct user after init component', () => {
         const { name, email, password } = mockUser;
-        fixture.detectChanges();
 
         expect(getElementByCss(nameSelector)?.nativeElement.value).toBe(name);
         expect(getElementByCss(emailSelector)?.nativeElement.value).toBe(email);
@@ -64,15 +66,11 @@ describe('User component', () => {
     })
 
     it('Should have not active form after init component', () => {
-        fixture.detectChanges();
-
         expect(component.form.enabled).toBeFalse()
     })
 
     it(`Should have default delete and edit buttons,
         but have not save and discard buttons after init`, () => {
-        fixture.detectChanges();
-
         expect(getElementByCss(editButton)).toBeTruthy();
         expect(getElementByCss(deleteButton)).toBeTruthy();
         expect(getElementByCss(saveChangesButton)).toBeFalsy();
@@ -80,8 +78,6 @@ describe('User component', () => {
     })
 
     it('Should have active form after click on edit button', () => {
-        fixture.detectChanges();
-
         component.onEdit();
 
         expect(component.form.enabled).toBeTrue();
@@ -89,8 +85,6 @@ describe('User component', () => {
 
     it(`Should have not delete and edit buttons,
         but have save and discard buttons after click on edit button`, () => {
-        fixture.detectChanges();
-
         component.onEdit();
 
         fixture.detectChanges();
@@ -102,8 +96,6 @@ describe('User component', () => {
     })
 
     it('Should change form from enable to disable and call editUser method of user service', () => {
-        fixture.detectChanges();
-
         component.onEdit();
 
         expect(component.form.enabled).toBeTrue();
@@ -111,20 +103,6 @@ describe('User component', () => {
         component.onSave();
 
         expect(userService.editUser$).toHaveBeenCalledWith(mockUser);
-        expect(component.form.enabled).toBeFalse();
-    })
-
-    it('Should reset form and disable form after click on reset button', () => {
-        // TODO доделать проверку формы на заполнение после просмотра видео о тестировании форм
-
-        fixture.detectChanges();
-
-        component.onEdit();
-
-        expect(component.form.enabled).toBeTrue();
-
-        component.onReset();
-
         expect(component.form.enabled).toBeFalse();
     })
 
@@ -139,8 +117,106 @@ describe('User component', () => {
         expect(spy).toHaveBeenCalledTimes(1);
     })
 
-    // it('Should can edit data of user' () => {})
+    it('Should send change data of user after edit', () => {
+        fixture.detectChanges();
 
-    // it('Should emit update list event when user was update' () => {})
+        component.onEdit();
 
+        const nameInput = getElementByCss(nameSelector).nativeElement;
+        const emailInput = getElementByCss(emailSelector).nativeElement;
+        const passwordInput = getElementByCss(passwordSelector).nativeElement;
+
+        nameInput.value = 'Gena';
+        emailInput.value = 'Gena@mail.com';
+        passwordInput.value = 'Genapassword';
+
+        nameInput.dispatchEvent(new Event('input'));
+        emailInput.dispatchEvent(new Event('input'))
+        passwordInput.dispatchEvent(new Event('input'))
+        
+        component.onSave();
+
+        expect(userService.editUser$).toHaveBeenCalledWith({
+            id: mockUser.id,
+            name: 'Gena',
+            email: 'Gena@mail.com',
+            password: 'Genapassword'
+        })
+    })
+
+    it('Should reset user data to default state after click on reset button', () => {
+        fixture.detectChanges();
+
+        component.onEdit();
+
+        expect(component.form.enabled).toBeTrue();
+
+        const nameInput = getElementByCss(nameSelector).nativeElement;
+        const emailInput = getElementByCss(emailSelector).nativeElement;
+        const passwordInput = getElementByCss(passwordSelector).nativeElement;
+
+        nameInput.value = 'Gena';
+        emailInput.value = 'Gena@mail.com';
+        passwordInput.value = 'Genapassword';
+
+        nameInput.dispatchEvent(new Event('input'));
+        emailInput.dispatchEvent(new Event('input'));
+        passwordInput.dispatchEvent(new Event('input'));
+        
+        expect(nameInput.value).toBe('Gena');
+        expect(emailInput.value).toBe('Gena@mail.com');
+        expect(passwordInput.value).toBe('Genapassword');
+
+        component.onReset();
+
+        expect(nameInput.value).toBe(mockUser.name);
+        expect(emailInput.value).toBe(mockUser.email);
+        expect(passwordInput.value).toBe(mockUser.password);
+
+        expect(component.form.enabled).toBeFalse();
+    })
+
+    it('Should has invalid form  if inputs is empty', () => {
+        fixture.detectChanges();
+
+        component.onEdit();
+
+        const nameInput = getElementByCss(nameSelector).nativeElement;
+        const emailInput = getElementByCss(emailSelector).nativeElement;
+        const passwordInput = getElementByCss(passwordSelector).nativeElement;
+
+        nameInput.value = '';
+        emailInput.value = '';
+        passwordInput.value = '';
+
+        nameInput.dispatchEvent(new Event('input'));
+        emailInput.dispatchEvent(new Event('input'));
+        passwordInput.dispatchEvent(new Event('input'));
+        
+        expect(component.form.controls['username'].valid).toBeFalse();
+        expect(component.form.controls['email'].valid).toBeFalse();
+        expect(component.form.controls['password'].valid).toBeFalse();
+    })
+
+    it('Should has valid form controls if inputs is not empty', () => {
+        fixture.detectChanges();
+
+        component.onEdit();
+
+        const nameInput = getElementByCss(nameSelector).nativeElement;
+        const emailInput = getElementByCss(emailSelector).nativeElement;
+        const passwordInput = getElementByCss(passwordSelector).nativeElement;
+
+        nameInput.value = anyString();
+        emailInput.value = anyString();
+        passwordInput.value = anyString();
+
+        nameInput.dispatchEvent(new Event('input'));
+        emailInput.dispatchEvent(new Event('input'));
+        passwordInput.dispatchEvent(new Event('input'));
+        
+        expect(component.form.controls['username'].valid).toBeTrue();
+        expect(component.form.controls['email'].valid).toBeTrue();
+        expect(component.form.controls['password'].valid).toBeTrue();
+    })
 })
