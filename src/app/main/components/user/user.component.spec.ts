@@ -108,8 +108,6 @@ describe('User component', () => {
 
     it(`Should call deleteUser method of user service and emit update list event
         after click on delete button`, () => {
-        fixture.detectChanges();
-
         const spy = spyOn(component.updateList, 'next');
 
         component.onDelete();
@@ -118,8 +116,6 @@ describe('User component', () => {
     })
 
     it('Should send change data of user after edit', () => {
-        fixture.detectChanges();
-
         component.onEdit();
 
         const nameInput = getElementByCss(nameSelector).nativeElement;
@@ -145,8 +141,6 @@ describe('User component', () => {
     })
 
     it('Should reset user data to default state after click on reset button', () => {
-        fixture.detectChanges();
-
         component.onEdit();
 
         expect(component.form.enabled).toBeTrue();
@@ -177,8 +171,6 @@ describe('User component', () => {
     })
 
     it('Should has invalid form  if inputs is empty', () => {
-        fixture.detectChanges();
-
         component.onEdit();
 
         const nameInput = getElementByCss(nameSelector).nativeElement;
@@ -199,8 +191,6 @@ describe('User component', () => {
     })
 
     it('Should has valid form controls if inputs is not empty', () => {
-        fixture.detectChanges();
-
         component.onEdit();
 
         const nameInput = getElementByCss(nameSelector).nativeElement;
