@@ -55,7 +55,6 @@ describe('User list component', () => {
         fixture.detectChanges();
 
         const result = getElementsByCss('.user-list__user')
-        console.log(result);
         
         expect(result.length).toBe(0)
     })
@@ -66,7 +65,6 @@ describe('User list component', () => {
         fixture.detectChanges();
 
         const result = getElementsByCss('.user-list__user')
-        console.log(result);
         
         expect(result.length).toBe(3)
     })
