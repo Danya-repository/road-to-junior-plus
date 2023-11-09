@@ -13,8 +13,7 @@
       <input type="text"
              formControlName="email"
              [ngClass]="{'user__can-edit-mode' : form.enabled}"
-             class="user__input
-             user__email"
+             class="user__input user__email"
       >
     </div>
     <div class="user__info-row">
@@ -31,11 +30,11 @@
       <button class="user__button user__button-edit" (click)="onEdit()">Редактировать</button>
       <button class="user__button user__button-delete" (click)="onDelete()">Удалить</button>
     </ng-container>
-    <button class="user__button user__button-show">Показать</button>
+    <!-- <button class="user__button user__button-show">Показать</button> -->
   </div>
 </li>
 
 <ng-template #editButton>
-  <button class="user__button user__button-edit" (click)="onSave()">Сохранить</button>
-  <button class="user__button user__button-delete" (click)="onReset()">Сбросить</button>
+  <button class="user__button user__button-save" (click)="onSave()">Сохранить</button>
+  <button class="user__button user__button-reset" (click)="onReset()">Сбросить</button>
 </ng-template>
